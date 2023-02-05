@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "930610375070",
+    "project_id": "vira-e7124",
+    "storage_bucket": "vira-e7124.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:930610375070:android:0cfc97d7b7b586aabd8e8f",
+        "android_client_info": {
+          "package_name": "com.mycompany.vira"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "930610375070-40r0qe1iptgoge9ic97rvlpikjj60hf7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.vira",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "930610375070-ceg4asgm4f786rcdinaii8e3adoej81q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUu_4Ni3q1Vk1lO7Vj2dvzWxXGXqk5OUE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "930610375070-ceg4asgm4f786rcdinaii8e3adoej81q.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "930610375070-qjbhht87kndtiku0pputvao4kp252ups.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.vira"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

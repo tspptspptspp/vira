@@ -1,0 +1,307 @@
+import requests
+from bs4 import BeautifulSoup
+import firebase_admin
+from firebase_admin import firestore
+from firebase_admin import credentials
+
+credential = credentials.Certificate('/Users/richanayak/Desktop/python/vira-e7124-firebase-adminsdk-s1wi7-45dad82af3-2.json')
+firebase_admin.initialize_app(credential)
+
+
+# Initialize Firebase
+database = firestore.client()
+
+# Retrieve the product name from Firestore
+product_ref = database.collection("search").document("product_name")
+query = database.collection("search").where('search', '==', product_ref)
+results = query.get()
+product = product_ref.get().to_dict()
+product_name = "Product Name"
+
+
+# Scrape the EWG website
+url = f"https://www.ewg.org/skindeep/"
+response = requests.get(url)
+soup = BeautifulSoup(response.text, "html.parser")
+
+# Find the search bar and submit a form request to search for your desired product
+search_form = soup.select_one("form", {"id": "form_swift"})
+search_term = product_name
+search_data = {"q": search_term}
+search_response = requests.post(url, data=search_data)
+# Send a GET request to the search page
+response = requests.get(url)
+
+# Check if the request was successful
+if response.status_code != 200:
+    raise Exception(f"Search request failed with status code {response.status_code}")
+
+# Parse the HTML content of the search page
+soup = BeautifulSoup(response.text, "html.parser")
+
+# Find the link to the product information page
+product_link = soup.select_one("a.product-result")["href"]
+
+# The URL of the product information page
+product_url = "https://cosdna.com" + product_link
+
+# Send a GET request to the product information page
+product_response = requests.get(product_url)
+
+# Check if the request was successful
+if product_response.status_code != 200:
+    raise Exception(f"Product request failed with status code {product_response.status_code}")
+
+# Parse the HTML content of the product information page
+product_soup = BeautifulSoup(product_response.text, "html.parser")
+
+# Find the HTML element containing the ingredients
+ingredients_element = product_soup.select_one("#product-ingredients")
+
+# Extract the text content of the element
+ingredients = ingredients_element.text
+
+# Print the ingredients
+print("Ingredients:", ingredients)
+
+# Find the link to the product information page
+product_link = soup.select("a.product-result")[0]["href"]
+
+# Scrape the product information page for the ingredients
+product_url = product_url = "https://cosdna.com" + product_link
+product_response = requests.get(product_url)
+product_soup
+bad_ingredients = ['Acetaldehyde', '2-Acetylaminofluorene', 'Acrylamide', 'Acrylonitrile', 'Aldrin', '4-Aminodiphenyl', 'Amitrole', 'Aniline', 'homologs', 'o-Anisidine','Arsenic', 'inorganic arsenic compounds','Arsine','Asbestos','Asphalt fumes', 'Benzene', 'Benzidine', 'Benzidine-based dyes', 'Beryllium', 'Butadiene', 'tert-Butyl chromate'
+'Cadmium dust', 'Captafol', 'Captan', 'Carbon black', 'Carbon tetrachloride', 'Chlordane', 'Chlorinated camphene',
+'Chlorodiphenyl', 'polychlorinated biphenyls',
+'phthlate',
+'sulfate',
+'dimethicone',
+'talc',
+'Chloroform',
+'Chloromethyl methyl ether',
+'bis','Chloromethyl ether',
+'B-Chloroprene','Chromium, hexavalent','Chromyl chloride', 'chromium hexavalent','Chrysene','Coal', 'coal tar',
+'Coke oven emissions',
+'DDT',
+'dichlorodiphenyltrichloroethane',
+'Di-2-ethylhexyl phthalate',
+'DEHP',
+'2,4-Diaminoanisoleo',
+'o-Dianisidine-based dyes',
+'1,2-Dibromo-3-chloropropane',
+'DBCP',
+'Dichloroacetylene',
+'p-Dichlorobenzene',
+'3,3′-Dichlorobenzidine',
+'Dichloroethyl ether',
+'1,3-Dichloropropene',
+'Dieldrin',
+'Diesel exhaust',
+'Diglycidyl ether'
+'DGE',
+'glycidyl ethers',
+'4-Dimethylaminoazobenzene',
+'Dimethyl carbomoyl chloride',
+'1,1-Dimethylhydrazine',
+'hydrazines',
+'Dimethyl sulfate',
+'Dinitrotoluene',
+'Dioxane',
+'tobacco',
+'Epichlorohydrin',
+'Ethyl acrylate',
+'Ethylene dibromide',
+'Ehtylene dichloride',
+'Ethylene oxide',
+'Ethyleneimine',
+'Ethylene thiourea',
+'Formaldehyde',
+'Gallium arsenide',
+'Gasoline',
+'Heptachlor',
+'Hexachlorobutadiene',
+'Hexachloroethane',
+'Hexamethyl phosphoric triamide',
+'HMPA',
+'Hydrazine',
+'Kepone',
+'Malonaldehyde',
+'Methoxychlor',
+'Methyl bromide',
+'monohalomethanes',
+'Methyl chloride',
+'Methyl iodide',
+'monohalomethanes',
+'Methyl hydrazine',
+'hydrazines',
+'4,4′-Methylenebis',
+'2-chloroaniline',
+'MBOCA',
+'Methylene chloride',
+'4,4-Methylenedianiline',
+'MDA',
+'α-Naphthylamine',
+'alpha-naphthylamine',
+'β-Naphthylamine',
+'(beta-naphthylamine)',
+'Nickel',
+'Nickel carbonyl',
+'Nickel sulfide',
+'4-Nitrobiphenyl',
+'p-Nitrochlorobenzene',
+'2-Nitronaphthalene',
+'2-Nitropropane',
+'N-Nitrosodimethylamine',
+'Pentachloroethane',
+'chloroethanes',
+'N-Phenyl-b-naphthylamine',
+'b-naphthalene',
+'Phenyl glycidyl ether',
+'glycidyl ethers',
+'Phenylhydrazine',
+'hydrazines',
+'Propane Sultone',
+'B-Propiolactone',
+'Propylene dichloride',
+'Proplyene imine',
+'Propylene oxide',
+'Radon',
+'Rosin core solder',
+'formaldehyde',
+'Silica',
+'Soapstone',
+'Tremolite silicates',
+'2,3,7,8-Tetrachlorodibenzo-p-dioxin',
+'TCDD',
+'dioxin',
+'1,1,2,2-Tetrachloroethane',
+'Tetrachloroethylene',
+'Titanium dioxide',
+'o-Tolidine-based dyes',
+'o-Tolidine',
+'Toluene diisocyanate',
+'TDI',
+'Toluene diamine ',
+'TDA',
+'o-Toluidine',
+'p-Toluidine',
+'1,1,2-Trichloroethane',
+'chloroethanes',
+'Trichloroethylene',
+'1,2,3-Trichloropropane',
+'Uranium, insoluble compounds Uranium, soluble compounds',
+'Vinyl bromide; class, vinyl halides',
+'Vinyl chloride',
+'Vinyl cyclohexene dioxide',
+'Vinylidene chloride (1,1-dichloroethylene); class, vinyl halides)',
+'Welding fumes, total particulates',
+'Wood dust',
+'Zinc chromate',
+'chromium hexavalent',
+'1,2-Epoxypropane',
+'1,3-Butadiene',
+'1-Methyl-2-pyrrolidone',
+'2-Ethoxy ethanol',
+'2-Ethoxyethyl acetate',
+'2-Methoxyethanol',
+'2-Methoxyethyl acetate',
+'2-Nitropropane',
+'4,4-Methylene-bis(2-chloroaniline)',
+'4,4-Methylenedianiline',
+'4.4-Isopropylidenediphenol',
+'Bisphenol A',
+'Acrylamide',
+'Acrylonitrile',
+'Arsenic acid',
+'Benzene',
+'Beryllium inorganic compounds',
+'Bromoethylene',
+'Cadmium',
+'Carbon monoxide',
+'Chromium (VI) compounds',
+'Diesel',
+'Epichlorohydrin',
+'Ethylene dibromide',
+'Ethylene dichloride',
+'Ethylene oxide',
+'Formaldehyde',
+'Hardwood dusts',
+'Hydrazine',
+'Arsenic',
+'Lead',
+'Mercury',
+'N,N-Dimethylacetamide',
+'N,N-Dimethylformamide',
+'Nickel',
+'Nitrobenzene',
+'o-Toluidine',
+'Polycyclic aromatic hydrocarbons',
+'Refractory ceramic fibres',
+'Refractory ceramic fibres',
+'Zirconia Aluminosilicate Refractory Ceramic Fibres',
+'Aluminosilicate Refractory Ceramic Fibres',
+'Petroleum',
+'Aluminium',
+'Lead',
+'Boron',
+'Lithium',
+'Calcium',
+'Manganese',
+'Magnesium',
+'Molybdenum',
+'Potassium',
+'Neodymium',
+'Silicon',
+'Nickel',
+'Sodium',
+'Niobium',
+'Antimony',
+'Nitrogen',
+'Arsenic',
+'Phosphorus',
+'Barium',
+'Praseodymium',
+'Bismuth',
+'Rubidium',
+'Cadmium',
+'Selenium',
+'Carbon',
+'Silver',
+'Cerium',
+'Strontium',
+'Cesium',
+'Sulfur',
+'Chromium',
+'Tellurium',
+'Cobalt',
+'Tin',
+'Copper',
+'Titanium',
+'Germanium',
+'Tungsten',
+'Gold',
+'Uranium',
+'Holmium',
+'Vanadium',
+'Iron',
+'Zinc',
+'Lanthanum',
+'Zirconium',
+'Respirable crystalline silica dust',
+'Trichloroethylene',
+'Vinyl chloride']
+
+bad_ingredients_set = set(bad_ingredients)
+for ingredients in product_name:
+    if ingredients in bad_ingredients_set:
+        print(ingredients,"potentially causes cancer")
+        new_data = "this product potentially causes cancer"
+    if ingredients not in bad_ingredients_set:
+        new_data = "this product is probably safe from cancer"
+        print("This product is mostly safe from cancer")
+
+doc_ref = database.collection("ifbadornot").document()
+doc_ref.set(new_data)
+
+#based on brute-force and open-source code

@@ -1,0 +1,55 @@
+import requests
+from bs4 import BeautifulSoup
+import firebase_admin
+from firebase_admin import firestore
+from firebase_admin import credentials
+
+credential = credentials.Certificate('/Users/richanayak/Desktop/python/vira-e7124-firebase-adminsdk-s1wi7-45dad82af3-2.json')
+firebase_admin.initialize_app(credential)
+
+
+# Initialize Firebase
+database = firestore.client()
+
+# Retrieve the product name from Firestore
+product_ref = database.collection("search").document("product_name")
+query = database.collection("search").where('search', '==', product_ref)
+results = query.get()
+product = product_ref.get().to_dict()
+product_name = "Product Name"
+
+
+# Scrape the EWG website
+url = f"https://www.ewg.org/skindeep/products/970365-Cetaphil_Gentle_Skin_Cleanser/"
+response = requests.get(url)
+soup = BeautifulSoup(response.text, "html.parser")
+
+# Find the search bar and submit a form request to search for your desired product
+search_form = soup.select_one("form", {"id": "form_swift"})
+search_term = product_name
+search_data = {"q": search_term}
+search_response = requests.post(url, data=search_data)
+# Send a GET request to the search page
+response = requests.get(url)
+
+ingredients  = []
+
+# Extract the cancerous ingredients
+cancerous_ingredients = []
+
+ingredient_rows = soup.select(".data-table__body-row")
+for row in ingredient_rows:
+    ingredient = row.select_one(".data-table__cell--name").text.strip()
+    hazard_rating = row.select_one(".data-table__cell--hazard").text.strip()
+    if hazard_rating == "HIGH":
+        cancerous_ingredients.append(ingredient)
+    else:
+        new_data = "this is a safe product from cancer"
+new_data = "this is a safe product from cancer"
+# Store the cancerous ingredients in Firestore
+product["cancerous_ingredients"] = cancerous_ingredients
+product_ref.set(product)
+new_doc_ref = database.collection("ifbadornot").document()
+new_doc_ref.set({"data": new_data})
+#based on brute-force and open-source code
+

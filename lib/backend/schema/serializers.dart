@@ -6,6 +6,10 @@ import 'users_record.dart';
 import 'search_record.dart';
 import 'ifbadornot_record.dart';
 import 'search_food_record.dart';
+import 'alternative_makeup_record.dart';
+import 'alternative_food_record.dart';
+import 'alternative_bodycare_record.dart';
+import 'scanner_record.dart';
 
 import 'index.dart';
 
@@ -21,6 +25,10 @@ const kDocumentReferenceField = 'Document__Reference__Field';
   SearchRecord,
   IfbadornotRecord,
   SearchFoodRecord,
+  AlternativeMakeupRecord,
+  AlternativeFoodRecord,
+  AlternativeBodycareRecord,
+  ScannerRecord,
 ])
 final Serializers serializers = (_$serializers.toBuilder()
       ..add(DocumentReferenceSerializer())

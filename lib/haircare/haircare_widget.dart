@@ -1,3 +1,4 @@
+import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -134,7 +135,7 @@ class _HaircareWidgetState extends State<HaircareWidget>
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Hair-Care',
+                                    'Hair and Body Care',
                                     style: FlutterFlowTheme.of(context)
                                         .title2
                                         .override(
@@ -187,21 +188,58 @@ class _HaircareWidgetState extends State<HaircareWidget>
                     children: [
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 12),
-                        child: Container(
-                          width: 120,
-                          height: 100,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 4,
-                                color: Color(0x230E151B),
-                                offset: Offset(0, 2),
-                              )
-                            ],
-                            borderRadius: BorderRadius.circular(12),
+                        child: StreamBuilder<List<AlternativeBodycareRecord>>(
+                          stream: queryAlternativeBodycareRecord(
+                            singleRecord: true,
                           ),
+                          builder: (context, snapshot) {
+                            // Customize what your widget looks like when it's loading.
+                            if (!snapshot.hasData) {
+                              return Center(
+                                child: SizedBox(
+                                  width: 50,
+                                  height: 50,
+                                  child: CircularProgressIndicator(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
+                                  ),
+                                ),
+                              );
+                            }
+                            List<AlternativeBodycareRecord>
+                                containerAlternativeBodycareRecordList =
+                                snapshot.data!;
+                            // Return an empty Container when the item does not exist.
+                            if (snapshot.data!.isEmpty) {
+                              return Container();
+                            }
+                            final containerAlternativeBodycareRecord =
+                                containerAlternativeBodycareRecordList
+                                        .isNotEmpty
+                                    ? containerAlternativeBodycareRecordList
+                                        .first
+                                    : null;
+                            return Container(
+                              width: 120,
+                              height: 100,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 4,
+                                    color: Color(0x230E151B),
+                                    offset: Offset(0, 2),
+                                  )
+                                ],
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Text(
+                                'Example: Cetaphil Body Wash',
+                                style: FlutterFlowTheme.of(context).bodyText1,
+                              ),
+                            );
+                          },
                         ),
                       ),
                       Padding(
@@ -220,9 +258,6 @@ class _HaircareWidgetState extends State<HaircareWidget>
                               )
                             ],
                             borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Stack(
-                            children: [],
                           ),
                         ),
                       ),

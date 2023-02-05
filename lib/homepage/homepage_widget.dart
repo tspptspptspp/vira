@@ -3,6 +3,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../loginsignup/loginsignup_widget.dart';
+import '../scanner/scanner_widget.dart';
 import '../search_thing/search_thing_widget.dart';
 import '../typeofproduct/typeofproduct_widget.dart';
 import 'package:flutter/material.dart';
@@ -96,7 +97,7 @@ class _HomepageWidgetState extends State<HomepageWidget> {
                                 child: Container(
                                   width:
                                       MediaQuery.of(context).size.width * 0.44,
-                                  height: 240,
+                                  height: 200,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .primaryColor,
@@ -199,32 +200,37 @@ class _HomepageWidgetState extends State<HomepageWidget> {
                                         Align(
                                           alignment:
                                               AlignmentDirectional(-5.19, 0.66),
-                                          child: FlutterFlowIconButton(
-                                            borderColor: Colors.transparent,
-                                            borderRadius: 30,
-                                            borderWidth: 1,
-                                            buttonSize: 170,
-                                            icon: Icon(
-                                              Icons.block,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              size: 110,
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 50, 0, 0),
+                                            child: FlutterFlowIconButton(
+                                              borderColor: Colors.transparent,
+                                              borderRadius: 30,
+                                              borderWidth: 1,
+                                              buttonSize: 170,
+                                              icon: Icon(
+                                                Icons.block,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                size: 100,
+                                              ),
+                                              onPressed: () async {
+                                                await Navigator.push(
+                                                  context,
+                                                  PageTransition(
+                                                    type: PageTransitionType
+                                                        .rightToLeft,
+                                                    duration: Duration(
+                                                        milliseconds: 220),
+                                                    reverseDuration: Duration(
+                                                        milliseconds: 220),
+                                                    child: SearchThingWidget(),
+                                                  ),
+                                                );
+                                              },
                                             ),
-                                            onPressed: () async {
-                                              await Navigator.push(
-                                                context,
-                                                PageTransition(
-                                                  type: PageTransitionType
-                                                      .rightToLeft,
-                                                  duration: Duration(
-                                                      milliseconds: 220),
-                                                  reverseDuration: Duration(
-                                                      milliseconds: 220),
-                                                  child: TypeofproductWidget(),
-                                                ),
-                                              );
-                                            },
                                           ),
                                         ),
                                       ],
@@ -269,7 +275,7 @@ class _HomepageWidgetState extends State<HomepageWidget> {
                                   child: Container(
                                     width: MediaQuery.of(context).size.width *
                                         0.44,
-                                    height: 240,
+                                    height: 200,
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .primaryColor,
@@ -341,13 +347,13 @@ class _HomepageWidgetState extends State<HomepageWidget> {
                                                 borderColor: Colors.transparent,
                                                 borderRadius: 30,
                                                 borderWidth: 1,
-                                                buttonSize: 170,
+                                                buttonSize: 120,
                                                 icon: FaIcon(
                                                   FontAwesomeIcons.pumpSoap,
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .primaryText,
-                                                  size: 150,
+                                                  size: 100,
                                                 ),
                                                 onPressed: () async {
                                                   await Navigator.push(
@@ -377,6 +383,40 @@ class _HomepageWidgetState extends State<HomepageWidget> {
                           ),
                         ),
                       ],
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () async {
+                      await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ScannerWidget(),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      width: 350,
+                      height: 100,
+                      decoration: BoxDecoration(
+                        color: Color(0xFF67ACFF),
+                        borderRadius: BorderRadius.circular(16),
+                        shape: BoxShape.rectangle,
+                        border: Border.all(
+                          color: Color(0xFF67ACFF),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
+                        child: Text(
+                          'Scanner',
+                          textAlign: TextAlign.center,
+                          style:
+                              FlutterFlowTheme.of(context).bodyText1.override(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 25,
+                                  ),
+                        ),
+                      ),
                     ),
                   ),
                   Padding(

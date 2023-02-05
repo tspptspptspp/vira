@@ -10,6 +10,10 @@ import 'schema/users_record.dart';
 import 'schema/search_record.dart';
 import 'schema/ifbadornot_record.dart';
 import 'schema/search_food_record.dart';
+import 'schema/alternative_makeup_record.dart';
+import 'schema/alternative_food_record.dart';
+import 'schema/alternative_bodycare_record.dart';
+import 'schema/scanner_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -22,6 +26,10 @@ export 'schema/users_record.dart';
 export 'schema/search_record.dart';
 export 'schema/ifbadornot_record.dart';
 export 'schema/search_food_record.dart';
+export 'schema/alternative_makeup_record.dart';
+export 'schema/alternative_food_record.dart';
+export 'schema/alternative_bodycare_record.dart';
+export 'schema/scanner_record.dart';
 
 /// Functions to query ProjectsRecords (as a Stream and as a Future).
 Future<int> queryProjectsRecordCount({
@@ -277,6 +285,216 @@ Future<FFFirestorePage<SearchFoodRecord>> querySearchFoodRecordPage({
     queryCollectionPage(
       SearchFoodRecord.collection,
       SearchFoodRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
+
+/// Functions to query AlternativeMakeupRecords (as a Stream and as a Future).
+Future<int> queryAlternativeMakeupRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      AlternativeMakeupRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<AlternativeMakeupRecord>> queryAlternativeMakeupRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      AlternativeMakeupRecord.collection,
+      AlternativeMakeupRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<AlternativeMakeupRecord>> queryAlternativeMakeupRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      AlternativeMakeupRecord.collection,
+      AlternativeMakeupRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<AlternativeMakeupRecord>>
+    queryAlternativeMakeupRecordPage({
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+}) =>
+        queryCollectionPage(
+          AlternativeMakeupRecord.collection,
+          AlternativeMakeupRecord.serializer,
+          queryBuilder: queryBuilder,
+          nextPageMarker: nextPageMarker,
+          pageSize: pageSize,
+          isStream: isStream,
+        );
+
+/// Functions to query AlternativeFoodRecords (as a Stream and as a Future).
+Future<int> queryAlternativeFoodRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      AlternativeFoodRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<AlternativeFoodRecord>> queryAlternativeFoodRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      AlternativeFoodRecord.collection,
+      AlternativeFoodRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<AlternativeFoodRecord>> queryAlternativeFoodRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      AlternativeFoodRecord.collection,
+      AlternativeFoodRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<AlternativeFoodRecord>> queryAlternativeFoodRecordPage({
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+}) =>
+    queryCollectionPage(
+      AlternativeFoodRecord.collection,
+      AlternativeFoodRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
+
+/// Functions to query AlternativeBodycareRecords (as a Stream and as a Future).
+Future<int> queryAlternativeBodycareRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      AlternativeBodycareRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<AlternativeBodycareRecord>> queryAlternativeBodycareRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      AlternativeBodycareRecord.collection,
+      AlternativeBodycareRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<AlternativeBodycareRecord>> queryAlternativeBodycareRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      AlternativeBodycareRecord.collection,
+      AlternativeBodycareRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<AlternativeBodycareRecord>>
+    queryAlternativeBodycareRecordPage({
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+}) =>
+        queryCollectionPage(
+          AlternativeBodycareRecord.collection,
+          AlternativeBodycareRecord.serializer,
+          queryBuilder: queryBuilder,
+          nextPageMarker: nextPageMarker,
+          pageSize: pageSize,
+          isStream: isStream,
+        );
+
+/// Functions to query ScannerRecords (as a Stream and as a Future).
+Future<int> queryScannerRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      ScannerRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<ScannerRecord>> queryScannerRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      ScannerRecord.collection,
+      ScannerRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<ScannerRecord>> queryScannerRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      ScannerRecord.collection,
+      ScannerRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<ScannerRecord>> queryScannerRecordPage({
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+}) =>
+    queryCollectionPage(
+      ScannerRecord.collection,
+      ScannerRecord.serializer,
       queryBuilder: queryBuilder,
       nextPageMarker: nextPageMarker,
       pageSize: pageSize,

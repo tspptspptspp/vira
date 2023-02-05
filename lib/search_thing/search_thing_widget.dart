@@ -2,6 +2,8 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../homepage/homepage_widget.dart';
+import '../searchbar_everythingelse/searchbar_everythingelse_widget.dart';
+import '../searchbar_food/searchbar_food_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -29,10 +31,6 @@ class _SearchThingWidgetState extends State<SearchThingWidget> {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [],
-                ),
                 Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [],
@@ -74,7 +72,7 @@ class _SearchThingWidgetState extends State<SearchThingWidget> {
                       child: Text(
                         'Categories ',
                         style: FlutterFlowTheme.of(context).bodyText1.override(
-                              fontFamily: 'Poppins',
+                              fontFamily: 'Source Sans Pro',
                               fontSize: 50,
                               fontWeight: FontWeight.bold,
                             ),
@@ -113,46 +111,58 @@ class _SearchThingWidgetState extends State<SearchThingWidget> {
                       ),
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 2, 0, 0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        35, 4, 20, 0),
-                                    child: Text(
-                                      'Skin Care and Makeup',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyText1
-                                          .override(
-                                            fontFamily: 'Poppins',
-                                            fontSize: 18,
-                                          ),
+                        child: InkWell(
+                          onTap: () async {
+                            await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    SearchbarEverythingelseWidget(),
+                              ),
+                            );
+                          },
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 2, 0, 0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          35, 4, 20, 0),
+                                      child: Text(
+                                        'Skin Care and Makeup',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily: 'Poppins',
+                                              fontSize: 18,
+                                            ),
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
-                            FlutterFlowIconButton(
-                              borderColor: Colors.transparent,
-                              borderRadius: 30,
-                              borderWidth: 1,
-                              buttonSize: 150,
-                              icon: Icon(
-                                Icons.face_retouching_natural,
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                size: 100,
+                              FlutterFlowIconButton(
+                                borderColor: Colors.transparent,
+                                borderRadius: 30,
+                                borderWidth: 1,
+                                buttonSize: 150,
+                                icon: Icon(
+                                  Icons.face_retouching_natural,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 100,
+                                ),
+                                onPressed: () {
+                                  print('IconButton pressed ...');
+                                },
                               ),
-                              onPressed: () {
-                                print('IconButton pressed ...');
-                              },
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -174,42 +184,54 @@ class _SearchThingWidgetState extends State<SearchThingWidget> {
                       ),
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      50, 4, 20, 0),
-                                  child: Text(
-                                    'Hair and Body Care',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Poppins',
-                                          fontSize: 18,
-                                        ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            FlutterFlowIconButton(
-                              borderColor: Colors.transparent,
-                              borderRadius: 30,
-                              borderWidth: 1,
-                              buttonSize: 150,
-                              icon: FaIcon(
-                                FontAwesomeIcons.soap,
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                size: 100,
+                        child: InkWell(
+                          onTap: () async {
+                            await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    SearchbarEverythingelseWidget(),
                               ),
-                              onPressed: () {
-                                print('IconButton pressed ...');
-                              },
-                            ),
-                          ],
+                            );
+                          },
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        50, 4, 20, 0),
+                                    child: Text(
+                                      'Hair and Body Care',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Poppins',
+                                            fontSize: 18,
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              FlutterFlowIconButton(
+                                borderColor: Colors.transparent,
+                                borderRadius: 30,
+                                borderWidth: 1,
+                                buttonSize: 150,
+                                icon: FaIcon(
+                                  FontAwesomeIcons.soap,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 100,
+                                ),
+                                onPressed: () {
+                                  print('IconButton pressed ...');
+                                },
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -231,42 +253,53 @@ class _SearchThingWidgetState extends State<SearchThingWidget> {
                       ),
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(40, 0, 40, 0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      15, 4, 0, 0),
-                                  child: Text(
-                                    'Food and Beverages',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Poppins',
-                                          fontSize: 18,
-                                        ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            FlutterFlowIconButton(
-                              borderColor: Colors.transparent,
-                              borderRadius: 30,
-                              borderWidth: 1,
-                              buttonSize: 150,
-                              icon: Icon(
-                                Icons.fastfood_rounded,
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                size: 100,
+                        child: InkWell(
+                          onTap: () async {
+                            await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SearchbarFoodWidget(),
                               ),
-                              onPressed: () {
-                                print('IconButton pressed ...');
-                              },
-                            ),
-                          ],
+                            );
+                          },
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        15, 4, 0, 0),
+                                    child: Text(
+                                      'Food and Beverages',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Poppins',
+                                            fontSize: 18,
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              FlutterFlowIconButton(
+                                borderColor: Colors.transparent,
+                                borderRadius: 30,
+                                borderWidth: 1,
+                                buttonSize: 150,
+                                icon: Icon(
+                                  Icons.fastfood_rounded,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 100,
+                                ),
+                                onPressed: () {
+                                  print('IconButton pressed ...');
+                                },
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),

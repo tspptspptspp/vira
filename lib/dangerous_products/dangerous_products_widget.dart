@@ -253,9 +253,6 @@ class _DangerousProductsWidgetState extends State<DangerousProductsWidget>
                             ],
                             borderRadius: BorderRadius.circular(12),
                           ),
-                          child: Stack(
-                            children: [],
-                          ),
                         ),
                       ),
                       Padding(
@@ -274,12 +271,6 @@ class _DangerousProductsWidgetState extends State<DangerousProductsWidget>
                               )
                             ],
                             borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Container(
-                            width: 120,
-                            child: Stack(
-                              children: [],
-                            ),
                           ),
                         ),
                       ),

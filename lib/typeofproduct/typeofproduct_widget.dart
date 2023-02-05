@@ -1,4 +1,3 @@
-import '../body_care/body_care_widget.dart';
 import '../facial_care/facial_care_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -6,6 +5,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../food/food_widget.dart';
 import '../haircare/haircare_widget.dart';
 import '../homepage/homepage_widget.dart';
+import '../makeup/makeup_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -95,10 +95,6 @@ class _TypeofproductWidgetState extends State<TypeofproductWidget> {
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [],
-                                ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       16, 8, 16, 0),
@@ -121,10 +117,6 @@ class _TypeofproductWidgetState extends State<TypeofproductWidget> {
                                     ),
                                   ),
                                 ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [],
-                                ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       16, 8, 16, 0),
@@ -133,8 +125,7 @@ class _TypeofproductWidgetState extends State<TypeofproductWidget> {
                                       await Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) =>
-                                              BodyCareWidget(),
+                                          builder: (context) => MakeupWidget(),
                                         ),
                                       );
                                     },
@@ -155,7 +146,7 @@ class _TypeofproductWidgetState extends State<TypeofproductWidget> {
                                               context,
                                               MaterialPageRoute(
                                                 builder: (context) =>
-                                                    BodyCareWidget(),
+                                                    MakeupWidget(),
                                               ),
                                             );
                                           },
@@ -170,7 +161,7 @@ class _TypeofproductWidgetState extends State<TypeofproductWidget> {
                                                     context,
                                                     MaterialPageRoute(
                                                       builder: (context) =>
-                                                          BodyCareWidget(),
+                                                          MakeupWidget(),
                                                     ),
                                                   );
                                                 },
@@ -194,7 +185,7 @@ class _TypeofproductWidgetState extends State<TypeofproductWidget> {
                                                       context,
                                                       MaterialPageRoute(
                                                         builder: (context) =>
-                                                            BodyCareWidget(),
+                                                            MakeupWidget(),
                                                       ),
                                                     );
                                                   },
